@@ -11,6 +11,7 @@ import ru.practicum.server.mapper.StatisticMapper;
 import ru.practicum.server.repository.StatisticRepository;
 
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -24,6 +25,7 @@ public class StatisticServiceImpl implements StatisticService {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
+    @Transactional
     public ResponseEndpointHitDto addEndpointHit(CreateEndpointHitDto createEndpointHitDto) {
         return mapper.mapToResponseEndpointHitDto(statistics.save(mapper.mapToEndpointHit(createEndpointHitDto)));
     }
